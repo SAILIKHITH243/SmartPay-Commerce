@@ -6,8 +6,7 @@ SmartPay Commerce is a web-based e-commerce platform built with Python, Flask, S
 
 ##  Website
 
-**Live Website:** [Add Your Deployed Website URL Here]
-
+**Live Website:** (https://smartpay-commerce.onrender.com/)
 ## Features
 
 ### Customer Portal
