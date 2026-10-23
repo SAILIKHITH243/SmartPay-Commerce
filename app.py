@@ -1311,33 +1311,23 @@ if __name__ == "__main__":
     print("Payment History: http://127.0.0.1:5000/payment-history")
     print("Razorpay keys configured:", bool(KEY_ID and KEY_SECRET))
 
-   if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=False)
     
+
 # =========================================================
 # INITIALIZE DATABASE AND START SERVER
 # =========================================================
 
 app.jinja_loader = DictLoader(TEMPLATES)
 app.jinja_env.globals["csrf_token"] = csrf_token
-
 initialize_database()
 
 
 if __name__ == "__main__":
     print("SmartPay Commerce")
-    print("Home: http://127.0.0.1:5000/")
-    print("Products: http://127.0.0.1:5000/products")
-    print("Cart: http://127.0.0.1:5000/cart")
-    print("Customer Register: http://127.0.0.1:5000/register")
-    print("Customer Login: http://127.0.0.1:5000/login")
-    print("My Orders: http://127.0.0.1:5000/my-orders")
-    print("Merchant Login: http://127.0.0.1:5000/merchant/login")
-    print("Payment History: http://127.0.0.1:5000/payment-history")
+    print("Local development URL: http://127.0.0.1:5000/")
     print("Razorpay keys configured:", bool(KEY_ID and KEY_SECRET))
-
     app.run(
         host="0.0.0.0",
         port=int(os.environ.get("PORT", 5000)),
-        debug=False
+        debug=False,
     )
