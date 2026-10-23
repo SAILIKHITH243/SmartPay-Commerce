@@ -4,11 +4,11 @@
 
 SmartPay Commerce is a web-based e-commerce platform built with Python, Flask, SQLite, HTML, CSS, and Razorpay Test Mode.
 
-## 🌐 Website
+##  Website
 
 **Live Website:** [Add Your Deployed Website URL Here]
 
-## ✨ Features
+## Features
 
 ### Customer Portal
 - Customer registration and login
