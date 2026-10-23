@@ -1,0 +1,78 @@
+
+{% extends "base.html" %}
+
+{% block title %}Payment History | SmartPay Commerce{% endblock %}
+
+{% block content %}
+
+<div style="margin-bottom: 25px;">
+    <span class="eyebrow">Merchant tools · Prototype</span>
+    <h1 style="margin-bottom: 8px;">Payment History</h1>
+    <p class="muted">
+        Review payment records saved in the local SmartPay database.
+    </p>
+</div>
+
+<div class="card">
+    <div style="display: flex; justify-content: space-between;
+                align-items: center; gap: 12px; flex-wrap: wrap;">
+        <div>
+            <h2 style="margin: 0;">Recorded Payments</h2>
+            <p class="muted" style="margin-bottom: 0;">
+                Total records: {{ payments|length }}
+            </p>
+        </div>
+
+        <a href="{{ url_for('home') }}" class="btn btn-light">
+            Back to Home
+        </a>
+    </div>
+
+    {% if payments %}
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Product</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Created At</th>
+                        <th>Payment Link ID</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for payment in payments %}
+                    <tr>
+                        <td>{{ payment.id }}</td>
+                        <td>{{ payment.product_name }}</td>
+                        <td>
+                            ₹{{ "%.2f"|format(payment.amount_paise / 100) }}
+                        </td>
+                        <td>
+                            {% if payment.status|lower == "paid" %}
+                                <span class="status">PAID</span>
+                            {% else %}
+                                {{ payment.status }}
+                            {% endif %}
+                        </td>
+                        <td>{{ payment.created_at }}</td>
+                        <td>{{ payment.payment_link_id }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <h2>No payments yet</h2>
+            <p>Verified payment records will appear here.</p>
+            <a href="{{ url_for('home') }}" class="btn btn-primary">
+                Go to Home
+            </a>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

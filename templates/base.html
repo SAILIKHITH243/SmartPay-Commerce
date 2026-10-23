@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}SmartPay Commerce{% endblock %}</title>
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --background: #f5f7fb;
+            --surface: #ffffff;
+            --text: #172033;
+            --muted: #64748b;
+            --border: #e5eaf2;
+            --green: #15803d;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--background);
+            color: var(--text);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .navbar {
+            max-width: 1150px;
+            margin: auto;
+            padding: 17px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .brand {
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .brand span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            display: inline-block;
+            padding: 10px 13px;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--muted);
+        }
+
+        .nav-link:hover {
+            background: #eff6ff;
+            color: var(--primary);
+        }
+
+        .test-badge {
+            display: inline-block;
+            background: #fff7ed;
+            color: #9a3412;
+            padding: 7px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1150px;
+            min-height: 75vh;
+            margin: auto;
+            padding: 30px 22px 55px;
+        }
+
+        .hero {
+            background: linear-gradient(120deg, #eff6ff, #ffffff);
+            border: 1px solid #dbeafe;
+            border-radius: 22px;
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .hero h1 {
+            font-size: clamp(30px, 5vw, 45px);
+            line-height: 1.15;
+            margin: 12px 0;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .eyebrow {
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            padding: 23px;
+            box-shadow: 0 5px 20px rgba(15, 23, 42, 0.035);
+        }
+
+        .section-title {
+            margin: 35px 0 18px;
+            font-size: 25px;
+        }
+
+        .product-grid,
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(220px, 1fr)
+            );
+            gap: 20px;
+        }
+
+        .product-art {
+            min-height: 175px;
+            margin-bottom: 19px;
+            border-radius: 13px;
+            background: linear-gradient(135deg, #e0eaff, #f1f5ff);
+            display: grid;
+            place-items: center;
+            font-size: 76px;
+        }
+
+        .price {
+            font-size: 27px;
+            font-weight: 800;
+            margin: 12px 0;
+        }
+
+        .muted {
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 17px;
+            border: 0;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-light {
+            background: white;
+            color: var(--primary);
+            border: 1px solid #bfdbfe;
+        }
+
+        .full-width {
+            width: 100%;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 20px;
+            background: #dcfce7;
+            color: var(--green);
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 16px;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th,
+        td {
+            padding: 14px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+            overflow-wrap: anywhere;
+        }
+
+        th {
+            background: #f8fafc;
+            color: var(--muted);
+        }
+
+        .empty-state {
+            padding: 38px 15px;
+            text-align: center;
+            color: var(--muted);
+        }
+
+        .footer {
+            padding: 22px;
+            border-top: 1px solid var(--border);
+            background: white;
+            color: var(--muted);
+            font-size: 13px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 14px;
+            }
+
+            .nav-links {
+                gap: 2px;
+            }
+
+            .nav-link {
+                padding: 9px;
+                font-size: 12px;
+            }
+
+            .container {
+                padding: 20px 14px 35px;
+            }
+
+            .hero {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="topbar">
+        <nav class="navbar">
+
+            <a class="brand" href="{{ url_for('home') }}">
+                Smart<span>Pay</span>
+            </a>
+
+            <div class="nav-links">
+
+                <a class="nav-link"
+                   href="{{ url_for('home') }}">
+                    Home
+                </a>
+
+                <a class="nav-link"
+                   href="{{ url_for('products') }}">
+                    Products
+                </a>
+
+                <a class="nav-link"
+                   href="{{ url_for('cart') }}">
+                    Cart
+                </a>
+
+                <a class="nav-link"
+                   href="{{ url_for('payment_history') }}">
+                    Payment History
+                </a>
+
+                <span class="test-badge">TEST MODE</span>
+
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        SmartPay Commerce · Learning Project · Razorpay Test Mode
+    </footer>
+
+</body>
+</html>

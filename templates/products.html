@@ -1,0 +1,75 @@
+
+{% extends "base.html" %}
+
+{% block title %}Products | SmartPay Commerce{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <div>
+        <span class="eyebrow">SMARTPAY STORE</span>
+        <h1>Explore Products</h1>
+        <p>Browse our available products and discover your next favourite.</p>
+    </div>
+    <div style="font-size: 75px;">🛍️</div>
+</section>
+
+<h2 class="section-title">Our Collection</h2>
+
+{% if products %}
+<div class="product-grid">
+    {% for product in products %}
+    <article class="card">
+        <div class="product-art">
+            {{ product.image_emoji }}
+        </div>
+
+        <span class="eyebrow">Product #{{ product.id }}</span>
+        <h2>{{ product.name }}</h2>
+        <p class="muted">{{ product.description }}</p>
+
+        <div class="price">
+            ₹{{ "%.2f"|format(product.price_paise / 100) }}
+        </div>
+        
+{% if product.stock > 0 %}
+<form
+    action="{{ url_for('add_to_cart', product_id=product.id) }}"
+    method="POST"
+>
+    <button type="submit" class="btn btn-primary full-width">
+        Add to Cart
+    </button>
+</form>
+{% else %}
+<p class="muted">Currently out of stock.</p>
+{% endif %}
+
+
+        {% if product.stock > 0 %}
+            <span class="status">In stock: {{ product.stock }}</span>
+        {% else %}
+            <span class="test-badge">Out of stock</span>
+        {% endif %}
+    </article>
+    {% endfor %}
+</div>
+{% else %}
+<div class="card empty-state">
+    <h2>No products available</h2>
+    <p>Products have not been added to the database yet.</p>
+</div>
+{% endif %}
+
+<div class="card" style="margin-top: 25px;">
+    <h2>More shopping features coming next</h2>
+    <p class="muted">
+        Shopping cart, checkout and customer orders are the next development steps.
+    </p>
+    <a href="{{ url_for('home') }}" class="btn btn-primary">
+        Back to Home
+    </a>
+</div>
+
+{% endblock %}
+

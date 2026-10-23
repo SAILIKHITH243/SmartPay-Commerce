@@ -1,0 +1,87 @@
+
+{% extends "base.html" %}
+
+{% block title %}Home | SmartPay Commerce{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <div style="max-width: 580px;">
+        <span class="eyebrow">Your shopping experience starts here</span>
+        <h1>Smart shopping.<br>Simple payments.</h1>
+        <p>
+            Explore products, enjoy a simple checkout experience,
+            and keep your payment records organized in one place.
+        </p>
+        <a href="#products" class="btn btn-primary">Explore Products</a>
+        <a href="{{ url_for('payment_history') }}" class="btn btn-light">
+            Payment History
+        </a>
+    </div>
+
+    <div style="font-size: 105px; padding: 10px 25px;" aria-hidden="true">
+        🛍️
+    </div>
+</section>
+
+<h2 class="section-title" id="products">Featured Product</h2>
+
+<div class="product-grid">
+    <article class="card">
+        <div class="product-art" aria-hidden="true">🎧</div>
+        <span class="eyebrow">Featured</span>
+        <h2>Wireless Headphones</h2>
+        <p class="muted">
+            A sample product for testing the SmartPay checkout flow.
+        </p>
+        <div class="price">₹499.00</div>
+
+        <form action="{{ url_for('pay') }}" method="POST">
+            <button type="submit" class="btn btn-primary full-width">
+                Continue to Payment
+            </button>
+        </form>
+
+        <p class="muted" style="font-size: 12px;">
+            Razorpay Test Mode · No real charge
+        </p>
+    </article>
+
+    <article class="card">
+        <h2>Customer Portal</h2>
+        <p class="muted">
+            Our next step is to add customer accounts, a shopping cart,
+            checkout details, and an order history page.
+        </p>
+        <span class="test-badge">Under development</span>
+    </article>
+
+    <article class="card">
+        <h2>Merchant Portal</h2>
+        <p class="muted">
+            A dedicated dashboard for managing products, inventory,
+            customer orders, and payment records will be added next.
+        </p>
+        <span class="test-badge">Under development</span>
+    </article>
+</div>
+
+<section class="card" style="margin-top: 28px;">
+    <h2>Simple. Secure. Organized.</h2>
+    <div class="feature-grid">
+        <div>
+            <h3>💳 Payment Integration</h3>
+            <p class="muted">Razorpay Test Mode payment links.</p>
+        </div>
+        <div>
+            <h3>🛡️ Payment Verification</h3>
+            <p class="muted">Check the payment status through the backend.</p>
+        </div>
+        <div>
+            <h3>📋 Payment Records</h3>
+            <p class="muted">View saved records in Payment History.</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

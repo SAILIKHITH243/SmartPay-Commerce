@@ -1,0 +1,92 @@
+
+{% extends "base.html" %}
+
+{% block title %}Checkout | SmartPay{% endblock %}
+
+{% block content %}
+
+<span class="eyebrow">SECURE CHECKOUT</span>
+<h1>Delivery Details</h1>
+<p class="muted">Enter your details to create an order.</p>
+
+{% if error %}
+<div class="card" style="border-color: #fca5a5; margin-bottom: 20px;">
+    <strong style="color: #b91c1c;">{{ error }}</strong>
+</div>
+{% endif %}
+
+<div class="feature-grid">
+    <section class="card">
+        <h2>Customer Details</h2>
+
+        <form method="POST" action="{{ url_for('checkout') }}">
+            <label for="customer_name">Full name</label>
+            <input
+                id="customer_name"
+                name="customer_name"
+                type="text"
+                required
+                maxlength="100"
+                placeholder="Enter your name"
+                style="display:block; width:100%; padding:12px; margin:8px 0 18px; border:1px solid #dbe1ea; border-radius:8px;"
+            >
+
+            <label for="phone">Mobile number</label>
+            <input
+                id="phone"
+                name="phone"
+                type="tel"
+                required
+                maxlength="20"
+                placeholder="Enter your mobile number"
+                style="display:block; width:100%; padding:12px; margin:8px 0 18px; border:1px solid #dbe1ea; border-radius:8px;"
+            >
+
+            <label for="address">Delivery address</label>
+            <textarea
+                id="address"
+                name="address"
+                required
+                maxlength="500"
+                rows="4"
+                placeholder="House number, street, town, PIN code"
+                style="display:block; width:100%; padding:12px; margin:8px 0 18px; border:1px solid #dbe1ea; border-radius:8px; font-family:inherit;"
+            ></textarea>
+
+            <button type="submit" class="btn btn-primary full-width">
+                Place Order & Continue to Payment
+            </button>
+        </form>
+    </section>
+
+    <section class="card">
+        <h2>Order Summary</h2>
+
+        {% for item in cart_items %}
+        <div style="display:flex; justify-content:space-between; gap:12px; padding:12px 0; border-bottom:1px solid #e5eaf2;">
+            <div>
+                <strong>{{ item.image_emoji }} {{ item.name }}</strong>
+                <p class="muted" style="margin:4px 0;">
+                    Quantity: {{ item.quantity }}
+                </p>
+            </div>
+            <strong>
+                ₹{{ "%.2f"|format(item.line_total_paise / 100) }}
+            </strong>
+        </div>
+        {% endfor %}
+
+        <div style="display:flex; justify-content:space-between; margin-top:20px;">
+            <strong>Total</strong>
+            <strong style="font-size:22px;">
+                ₹{{ "%.2f"|format(total_paise / 100) }}
+            </strong>
+        </div>
+
+        <p class="muted">
+            Payment will open on Razorpay. This prototype uses Test Mode.
+        </p>
+    </section>
+</div>
+
+{% endblock %}
