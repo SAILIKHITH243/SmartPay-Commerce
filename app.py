@@ -1311,4 +1311,5 @@ if __name__ == "__main__":
     print("Payment History: http://127.0.0.1:5000/payment-history")
     print("Razorpay keys configured:", bool(KEY_ID and KEY_SECRET))
 
-    app.run(host="127.0.0.1", port=5000, debug=True)
+   if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=False)
