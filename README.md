@@ -1,4 +1,4 @@
-# SmartPay Commerce 🛒
+# SmartPay Commerce 
 
 ### E-commerce & Razorpay Payment Integration Platform
 
@@ -33,7 +33,7 @@ SmartPay Commerce is a web-based e-commerce platform built with Python, Flask, S
 - SQLite payment and order records
 - Webhook signature verification endpoint
 
-## 🛠️ Technology Stack
+##  Technology Stack
 
 - Python
 - Flask
@@ -43,11 +43,11 @@ SmartPay Commerce is a web-based e-commerce platform built with Python, Flask, S
 - Werkzeug
 - python-dotenv
 
-## 🔄 How It Works
+##  How It Works
 
 Customers browse products, add items to their cart, place orders, and complete payments through Razorpay Test Mode. Merchants manage products, stock, customer orders, and payment records through a separate portal.
 
-## 🔐 Security
+##  Security
 
 - Password hashing
 - Form CSRF protection
@@ -56,7 +56,7 @@ Customers browse products, add items to their cart, place orders, and complete p
 
 Additional security testing is required before production deployment.
 
-## 🚀 Future Enhancements
+##  Future Enhancements
 
 - Public cloud deployment
 - Email and order notifications
@@ -64,7 +64,7 @@ Additional security testing is required before production deployment.
 - Advanced merchant analytics
 - Automated testing and monitoring
 
-## 📌 Project Status
+##  Project Status
 
 Core e-commerce and payment workflows have been tested locally. The application currently uses Razorpay Test Mode and requires production security review before accepting real payments.
 
